@@ -1,32 +1,26 @@
-const sizes = document.getElementsByClassName("font-size");
-const book = document.getElementById("book");
-let element = document.querySelector(".font-size_active");
-const activeSize = "font-size_active";
+let fontSize = Array.from(document.getElementsByClassName("font-size"));
+let book = document.getElementById('book');
 
-for (let size of sizes) {
-  size.onclick = () => {
-    if (size.getAttribute("data-size") === "small"){
-      deleteClass();
-      size.classList.add(activeSize);
-      book.classList.remove("font-size_big");
-      book.classList.add("font-size_small")
-    }
-    else if(size.getAttribute("data-size") === "big"){
-       deleteClass();
-       size.classList.add(activeSize);
-       book.classList.remove("font-size_small");
-       book.classList.add("font-size_big");
-    }
-    else{
-      deleteClass();
-      size.classList.add(activeSize);
-      book.classList.remove("font-size_small");
-      book.classList.remove("font-size_big");
-      }
-   return false;
-    }
-}
+fontSize[0].addEventListener('click', function() {
+  fontSize[1].classList.remove('font-size_active');
+  fontSize[2].classList.remove('font-size_active');
+  fontSize[0].classList.add('font-size_active');
+  book.classList.add('book_fs-small');
+  event.preventDefault();
+});
 
-function deleteClass() {
-    element.classList.remove("font-size_active");
-}
+fontSize[1].addEventListener('click', function() {
+  fontSize[0].classList.remove('font-size_active');
+  fontSize[2].classList.remove('font-size_active');
+  fontSize[1].classList.add('font-size_active');
+  book.className = 'book';
+  event.preventDefault();
+});
+
+fontSize[2].addEventListener('click', function() {
+  fontSize[1].classList.remove('font-size_active');
+  fontSize[0].classList.remove('font-size_active');
+  fontSize[2].classList.add('font-size_active');
+  book.classList.add('book_fs-big');
+  event.preventDefault();
+});
