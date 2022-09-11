@@ -7,13 +7,13 @@ selected.onclick = () => {
     downList.classList.remove("dropdown__list_active")
     return
   }
-  downList.classList.add("dropdown__list_active")
+  downList.classList.add("dropdown__list_active");
   }
 
 for(link of links){
   let button = link.closest(".dropdown__item").querySelector(".dropdown__link")
   button.onclick = () => {
-    downList.classList.add("dropdown__list_active")
+    downList.classList.remove("dropdown__list_active")
     selected.textContent = button.textContent;
     return false;
   }
