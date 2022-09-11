@@ -4,7 +4,7 @@ const downList = document.querySelector(".dropdown__list");
 
 selected.onclick = () => {
   if(downList.classList.contains("dropdown__list_active")){
-    downList.classLisr.remove("dropdown__list_active")
+    downList.classList.remove("dropdown__list_active")
     return
   }
   downList.classList.add("dropdown__list_active")
