@@ -21,8 +21,12 @@ function answer() {
         for (let button of document.getElementsByClassName("poll__answer")) {
             button.addEventListener('click', () => {
                 alert('Спасибо! Ваш голос засчитан');
+                window.location.reload();
             })
         }
     }
 }
+
+
 xhr.send();
+
