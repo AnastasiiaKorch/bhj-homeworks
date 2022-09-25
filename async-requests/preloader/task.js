@@ -15,7 +15,14 @@ function loading() {
 
         for (let item in valute) {
             items.insertAdjacentHTML("afterBegin",
-            `<div class="item__code">${valute[item].CharCode}</div> <div class="item__value">${valute[item].Value}</div> <div class="item__currency">руб.</div>`);
+            `<div class="item">
+              <div class="item__code">${valute[item].CharCode}
+              </div>
+              <div class="item__value">${valute[item].Value}
+              </div>
+              <div class="item__currency">руб.
+              </div>
+            </div>`);
         }
     }
 }
