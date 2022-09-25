@@ -1,32 +1,32 @@
-let pollTitle = document.getElementById("poll__title");
-let pollAnswers = document.getElementById("poll__answers");
-
+let pollTitle = document.getElementById('poll__title');
+let pollAnswers = document.getElementById('poll__answers')
 let xhr = new XMLHttpRequest();
-
-xhr.open('GET', 'https://netology-slow-rest.herokuapp.com/poll.php');
-xhr.responseType = "json";
-
-
-xhr.addEventListener('readystatechange', answer);
-
-function answer() {
-    if( xhr.readyState === xhr.DONE ) {
-        pollTitle.innerText = xhr.response.data.title;
-
-        for (let answers of xhr.response.data.answers) {
-            const text = `<button class="poll__answer">${answers}</button>`;
-            pollAnswers.insertAdjacentHTML('beforeEnd', text);
-        }
-
-        for (let button of document.getElementsByClassName("poll__answer")) {
-            button.addEventListener('click', () => {
-                alert('Спасибо! Ваш голос засчитан');
-                window.location.reload();
-            })
-        }
-    }
-}
-
-
+let requestUrl = 'https://netology-slow-rest.herokuapp.com/poll.php'
+xhr.open('GET', requestUrl);
+xhr.responseType = 'json';
+xhr.onload = () => {
+    console.log(xhr.response)
+    if (xhr.readyState === xhr.DONE) {
+        const title = xhr.response.data.title
+        pollTitle.insertAdjacentHTML('afterEnd', `${title}`);
+        const answer = xhr.response.data.answers;
+        console.log(answer)
+        answer.forEach(element => {
+            pollAnswers.insertAdjacentHTML('afterEnd',
+                `<button class="poll__answer">
+               ${element}
+             </button>`)
+        });
+        const button = Array.from(document.getElementsByClassName('poll__answer'))
+        button.forEach(element => {
+            element.addEventListener('click', () => {
+                alert('Спасибо, ваш голос засчитан!');
+            });
+        });
+    };
+};
 xhr.send();
+
+
+
 
